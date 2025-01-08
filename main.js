@@ -8,6 +8,9 @@ let screen = document.querySelector(".screen");
 
 const key = document.querySelectorAll(".numkey").forEach((keys) => {
     keys.addEventListener("click", () => {
+        if (calculated) {
+            clearAll()
+        };
         target += keys.textContent;
         screen.textContent = target;
         handleNumbers()
@@ -25,12 +28,7 @@ const operator = document.querySelectorAll(".operator").forEach((ops) => {
 )});
 
 const clear = document.querySelectorAll(".clear").forEach((ops) => {
-    ops.addEventListener("click", () => {
-        num1 = 0;
-        num2 = 0;
-        target = "";
-        screen.textContent = 0;
-    }
+    ops.addEventListener("click", () => clearAll()
 )});
 
 const equal = document.querySelector(".equal").addEventListener("click",() => operate())
@@ -46,18 +44,27 @@ function handleNumbers () {
 function operate () {
     switch (op) {
         case "+":
-            num1 = parseInt(num1) + parseInt(num2);
+            num1 = parseFloat(num1) + parseFloat(num2);
             break;
         case "-":
-            num1 = parseInt(num1) - parseInt(num2);
+            num1 = parseFloat(num1) - parseFloat(num2);
             break;
         case "*":
-            num1 = parseInt(num1) * parseInt(num2);
+            num1 = parseFloat(num1) * parseFloat(num2);
             break;
         case "/":
-            num1 = parseInt(num1) / parseInt(num2);
+            num1 = parseFloat(num1) / parseFloat(num2);
             break;
     }
     screen.textContent = num1;
     calculated = true;
+}
+
+function clearAll() {
+    num1 = 0;
+        num2 = 0;
+        target = "";
+        screen.textContent = 0;
+        opAdded = false;
+        calculated = false;
 }

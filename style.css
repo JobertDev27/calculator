@@ -27,6 +27,7 @@ body {
     font-size: 48px;
     padding-right: 10px;
     text-align: right;
+    overflow: hidden;
 }
 
 .keypad {
